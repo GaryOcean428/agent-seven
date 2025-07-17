@@ -1,13 +1,20 @@
 name: Greetings
 
-on: [pull_request, issues]
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
 
 jobs:
   greeting:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
     - uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: 'Message that will be displayed on users'' first issue'
-        pr-message: 'Message that will be displayed on users'' first pr'
+        issue-message: 'Thanks for opening your first issue here! We appreciate your contribution.'
+        pr-message: 'Thanks for opening your first PR here! We appreciate your contribution.'
